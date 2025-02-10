@@ -1,8 +1,15 @@
+import 'package:chatter_box_flutter/components/my_button.dart';
 import 'package:chatter_box_flutter/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  LoginPage({super.key});
+
+  // login method
+  void login(){}
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +40,45 @@ class LoginPage extends StatelessWidget {
             // email text field
             MyTextfield(
               hintText: 'Email',
+              obscureText: false,
+              controller: _emailController,
             ),
             SizedBox(height: 10,),
 
             // password text field
             MyTextfield(
               hintText: 'Password',
+              obscureText: true,
+              controller: _passwordController,
             ),
+            SizedBox(height: 25,),
 
             // login button
+            MyButton(
+              text: 'Login',
+              onTap: login,
+            ),
+            SizedBox(height: 25,),
 
             // register button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Not a member? ',
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  'Register now',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
