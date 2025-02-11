@@ -1,3 +1,4 @@
+import 'package:chatter_box_flutter/auth/login_or_register.dart';
 import 'package:chatter_box_flutter/pages/login_page.dart';
 import 'package:chatter_box_flutter/pages/register_page.dart';
 import 'package:chatter_box_flutter/themes/light_mode.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ChatterBox',
-      home: RegisterPage(),
+      home: LoginOrRegister(),
       theme: lightMode,
     );
   }

@@ -3,10 +3,12 @@ import 'package:chatter_box_flutter/components/my_textfield.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-
+  // email and pw text controller
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  LoginPage({super.key});
+  // tap to go to register page
+  final void Function()? onTap;
+  LoginPage({super.key, required this.onTap});
 
   // login method
   void login(){}
@@ -70,11 +72,14 @@ class LoginPage extends StatelessWidget {
                       color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
-                Text(
-                  'Register now',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
+                GestureDetector(
+                  onTap: onTap,
+                  child: Text(
+                    'Register now',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
               ],
