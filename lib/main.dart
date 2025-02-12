@@ -1,3 +1,4 @@
+import 'package:chatter_box_flutter/auth/auth_gate.dart';
 import 'package:chatter_box_flutter/auth/login_or_register.dart';
 import 'package:chatter_box_flutter/firebase_options.dart';
 import 'package:chatter_box_flutter/pages/login_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'ChatterBox',
-      home: LoginOrRegister(),
+      home: AuthGate(),
       theme: lightMode,
     );
   }
