@@ -1,3 +1,4 @@
+import 'package:chatter_box_flutter/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:chatter_box_flutter/components/my_button.dart';
 import 'package:chatter_box_flutter/components/my_textfield.dart';
@@ -12,7 +13,36 @@ class RegisterPage extends StatelessWidget {
   RegisterPage({super.key, this.onTap});
 
   // register method
-  void register(){}
+  void register(BuildContext context){
+    // get auth service
+    final _auth = AuthService();
+
+    // password match -> create user
+    if(_passwordController.text==_confirmPwController.text){
+      try{
+        _auth.signInWithEmailPassword(
+            _emailController.text,
+            _passwordController.text,
+        );
+      }catch(e){
+        showDialog(
+            context: context,
+            builder: (context)=>AlertDialog(
+              title: Text(e.toString()),
+            ),
+        );
+      }
+    }
+    // password don't match -> tell user to fix
+    else{
+      showDialog(
+        context: context,
+        builder: (context)=>AlertDialog(
+          title: Text('Password doesn\'t match'),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +97,7 @@ class RegisterPage extends StatelessWidget {
             // login button
             MyButton(
               text: 'Register',
-              onTap: register,
+              onTap: ()=> register(context),
             ),
             SizedBox(height: 25,),
 
