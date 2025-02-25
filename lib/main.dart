@@ -4,13 +4,21 @@ import 'package:chatter_box_flutter/firebase_options.dart';
 import 'package:chatter_box_flutter/pages/login_page.dart';
 import 'package:chatter_box_flutter/pages/register_page.dart';
 import 'package:chatter_box_flutter/themes/light_mode.dart';
+import 'package:chatter_box_flutter/themes/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  
+  runApp(
+    ChangeNotifierProvider(
+      create: (context)=>ThemeProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'ChatterBox',
       home: AuthGate(),
-      theme: lightMode,
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
